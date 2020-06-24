@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "CharacterListJQuery";
+}
+    <body>
+        <script src="~/Scripts/Custom/CharacterListUsingJQuery.js"></script>
+        <h2>CharacterListJQuery</h2>
+
+
+        <table class="table" id="CharacterTable">
+            <thead class="customStar">
+                <tr class="customBtnAqua">
+                    <th>Name</th>
+                    <th>Height</th>
+                    <th>Mass</th>
+                    <th>Hair Color</th>
+                    <th>Skin Color</th>
+                    <th>Eye Color</th>
+                    <th>Birth Year</th>
+                    <th>Gender</th>
+                    <th>Homeworld</th>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="col-md-10">
+            <br />
+            <p><a class="btn btn-default" onclick="GetCharactersAjax()">Get characters</a></p>
+        </div>
+
+
+
+        <style>
+            .customStar {
+                background-image: url("https://media.contentapi.ea.com/content/dam/star-wars-battlefront-2/common/swbf2-section-bg-about-top-celebration-edition-xl.jpg.adapt.320w.jpg");
+            }
+        </style>
+
+        <style>
+            .customBtnAqua {
+                color:aqua
+            }
+        </style>
+    </body>
+
+

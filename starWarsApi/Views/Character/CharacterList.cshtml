@@ -1,0 +1,119 @@
+﻿@model starWarsApi.Models.Application<starWarsApi.Models.CharactersModel>
+
+@{
+    ViewBag.Title = "CharacterListModel";
+}
+
+<br />
+<h2>List of characters</h2>
+<br />
+
+@using (Html.BeginForm("CharacterSearch", "Character", FormMethod.Get))
+{
+    @Html.TextBox("searchName");
+    <input type="submit" value="Search" />
+}
+<br />
+<br />
+
+
+<h4>Next</h4>
+
+@Html.ActionLink("Next list of characters", "CharacterList", new { link = Model.next })
+<br />
+
+<h4>Previous</h4>
+@if (Model.previous == null)
+{
+    ViewBag.ErrorMessage = "Cant go back";
+}
+else
+{
+    @Html.ActionLink("Previous list of characters", "CharacterList", new { link = Model.previous })
+}
+<br />
+<br />
+<br />
+
+@for (int i = 0; i < Model.results.Count; i++)
+{
+    <br />
+    @Html.ActionLink(Model.results.ElementAt(i).name, "SelectedCharacter", new { link = Model.results.ElementAt(i).url })
+    <br />
+}
+
+<br />
+<br />
+<br />
+
+<table class="table">
+    <thead class="custom-cream">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col"> Name </th>
+            <th scope="col"> Extra Info </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (int i = 1; i <= Model.results.Count; i++)
+        {
+            <tr>
+                <th scope="row" class="custom-cream">@i</th>
+                <td>@Model.results.ElementAt(i - 1).name</td>
+                <td>
+                    <a class="customBtn" data-toggle="collapse" href="#@i.ToString()" role="tree">-Info-</a>
+                    <div class="collapse" id="@i.ToString()">
+                        <div class="panel-collapse ">
+                            <p>Height: @Model.results.ElementAt(i - 1).height</p>
+                            <p>Mass: @Model.results.ElementAt(i - 1).mass</p>
+                            <p>Hair Color: @Model.results.ElementAt(i - 1).hair_color</p>
+                            <p>Skin Color: @Model.results.ElementAt(i - 1).skin_color</p>
+                            <p>Eye Color: @Model.results.ElementAt(i - 1).eye_color</p>
+                            <p>Birth Year: @Model.results.ElementAt(i - 1).birth_year</p>
+                            <p>Gender: @Model.results.ElementAt(i - 1).gender</p>
+                            <p>Homeworld: @Model.results.ElementAt(i - 1).homeworld</p>
+                            <p>Films: @Model.results.ElementAt(i - 1).films.Count</p>
+                            <p>Species: @Model.results.ElementAt(i - 1).species.Count</p>
+                            <p>Vehicles: @Model.results.ElementAt(i - 1).vehicles.Count</p>
+                            <p>Starships: @Model.results.ElementAt(i - 1).starships.Count</p>
+                            <p>Created: @Model.results.ElementAt(i - 1).created</p>
+                            <p>Edited: @Model.results.ElementAt(i - 1).edited</p>
+                            <p>URL: href="@Model.results.ElementAt(i - 1).url"</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .customBtn:hover {
+        box-shadow: inherit;
+        color: chartreuse;
+    }
+</style>
+
+<style>
+    .custom-blue {
+        background-color: blue;
+        font-weight: 900;
+        color: whitesmoke;
+    }
+</style>
+
+<style>
+    .custom-cream {
+        background-color: burlywood;
+        color: white;
+    }
+</style>
+
+
+
+
+
+
+
+
